@@ -37,7 +37,7 @@
     const contentDocument = tinymce.get('content').getDoc();
     const content = '<!DOCTYPE html>' + contentDocument.documentElement.outerHTML;
     const orientation = document.querySelector('.page-orientation input:checked').value;
-    const converted = await window.HTMLtoDOCX.default(content, null, {
+    const converted = await HTMLtoDOCX.default(content, null, {
       table: { row: { cantSplit: true } },
       footer: true,
       pageNumber: true,

@@ -13,7 +13,8 @@ module.exports = (_, options) => {
       filename: 'html-to-docx.js',
       library: {
         name: 'HTMLtoDOCX',
-        type: 'window', // makes it available for browser testing at window.HTMLtoDOCX
+        type: 'umd',
+        umdNamedDefine: true,
       },
       clean: true,
     },
@@ -61,7 +62,7 @@ module.exports = (_, options) => {
         process: 'process/browser',
       }),
     ],
-    devtool: 'source-map',
+    devtool: devMode ? 'source-map' : false,
     watch: devMode,
   };
 };
