@@ -1,0 +1,59 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>HTML-DOCX test</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/tinymce/4.1.6/tinymce.min.js"></script>
+  <script src="vendor/FileSaver.js"></script>
+</head>
+<body>
+<p>Enter/paste your document here:</p>
+<textarea id="content" cols="60" rows="10">
+    <p>We all live in a yellow submarine, yellow submarine, yellow submarine, yellow submarine</p>
+    <p>Images can also be exported if you source them as base64 DATA URI.</p>
+  </textarea>
+<div class="page-orientation">
+  <span>Page orientation:</span>
+  <label><input type="radio" name="orientation" value="portrait" checked>Portrait</label>
+  <label><input type="radio" name="orientation" value="landscape">Landscape</label>
+</div>
+<button id="convert">Convert</button>
+<div id="download-area"></div>
+
+<script>
+  tinymce.init({
+    selector: '#content',
+    plugins: [
+      "advlist autolink lists link image charmap print preview anchor",
+      "searchreplace visualblocks code fullscreen fullpage",
+      "insertdatetime media table contextmenu paste"
+    ],
+    toolbar: "insertfile undo redo | styleselect | bold italic | " +
+      "alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | " +
+      "link image"
+  });
+  document.getElementById('convert').addEventListener('click', async (e) => {
+    e.preventDefault();
+    const contentDocument = tinymce.get('content').getDoc();
+    const content = '<!DOCTYPE html>' + contentDocument.documentElement.outerHTML;
+    const orientation = document.querySelector('.page-orientation input:checked').value;
+    const converted = await window.HTMLtoDOCX.default(content, null, {
+      table: { row: { cantSplit: true } },
+      footer: true,
+      pageNumber: true,
+    });
+
+    saveAs(converted, 'test.docx');
+
+    const link = document.createElement('a');
+    link.href = URL.createObjectURL(converted);
+    link.download = 'document.docx';
+    link.appendChild(
+      document.createTextNode('Click here if your download has not started automatically'));
+    const downloadArea = document.getElementById('download-area');
+    downloadArea.innerHTML = '';
+    downloadArea.appendChild(link);
+  });
+</script>
+</body>
+</html>
