@@ -7,7 +7,7 @@ const webpack = require('webpack');
 module.exports = (_, options) => {
   const devMode = options.mode === 'development';
   return {
-    entry: './index.js',
+    entry: './src/index.js',
     output: {
       path: path.resolve(__dirname, 'dist'),
       filename: 'html-to-docx.js',
