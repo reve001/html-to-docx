@@ -64,5 +64,6 @@ module.exports = (_, options) => {
     ],
     devtool: devMode ? 'source-map' : false,
     watch: devMode,
+    optimization: { concatenateModules: false }, // webpack's ConcatenationScope throws exception due to string decoding issues
   };
 };
