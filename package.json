@@ -62,32 +62,24 @@
     "webpack-cli": "^5.1.4"
   },
   "dependencies": {
-    "@oozcitak/dom": "1.15.6",
-    "@oozcitak/util": "8.3.4",
-    "color-name": "^1.1.4",
-    "html-entities": "^2.3.3",
+    "@oozcitak/dom": "^1.15.10",
+    "@oozcitak/util": "^8.3.9",
+    "color-name": "^2.0.0",
+    "html-entities": "^2.5.2",
     "html-to-vdom": "^0.7.0",
-    "image-size": "^1.0.0",
+    "image-size": "^1.1.1",
     "image-to-base64": "^2.2.0",
-    "jszip": "^3.7.1",
+    "jszip": "^3.10.1",
     "lodash": "^4.17.21",
     "mime-types": "^2.1.35",
-    "nanoid": "^3.1.25",
+    "nanoid": "^5.0.8",
     "virtual-dom": "^2.1.1",
-    "xmlbuilder2": "2.1.2"
+    "xmlbuilder2": "^3.1.1"
   },
   "lint-staged": {
     "src/**/*.js": [
       "prettier --write",
       "eslint --fix"
     ]
-  },
-  "resolutions": {
-    "@oozcitak/util": "8.3.4",
-    "@oozcitak/dom": "1.15.6"
-  },
-  "overrides": {
-    "@oozcitak/util": "8.3.4",
-    "@oozcitak/dom": "1.15.6"
   }
 }
